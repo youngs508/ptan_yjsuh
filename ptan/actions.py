@@ -43,7 +43,7 @@ class EpsilonGreedyActionSelector(ActionSelector):
         actions = self.selector(scores)
         mask = np.random.random(size=batch_size) < self.epsilon
         rand_actions = np.random.choice(n_actions, sum(mask))
-        actions[mask] = rand_actions
+        actions[mask] = torch.from_numpy(rand_actions)
         return actions
 
 
